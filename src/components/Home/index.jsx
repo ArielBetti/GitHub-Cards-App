@@ -16,7 +16,7 @@ class Home extends React.Component {
           searchUser={this.props.searchUser}
         />
         {this.props.profiles.length === 0 ? (
-          <HomeEmpty src={EmptyIcon} />
+          <HomeEmpty src={EmptyIcon} alt="Empty state" />
         ) : (
           <CardList profiles={this.props.profiles} />
         )}

@@ -10,7 +10,6 @@ class Home extends React.Component {
     this.setState( prevState => ({
       responseProfiles: [...prevState.responseProfiles, data]
     }));
-    console.log(data);
   };
 
   state = {
