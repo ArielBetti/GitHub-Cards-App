@@ -1,29 +1,28 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeComponent from "@/components/Home";
-import api from "@/services/api";
+import faker from "faker";
 
-class Home extends React.Component {
+function Home() {
+  const [testRender, setTestRender] = useState([]);
 
-  searchUser = async (user) => {
-    const resp = await api.get(user);
-    const { data } = resp;
-    this.setState( prevState => ({
-      responseProfiles: [...prevState.responseProfiles, data]
-    }));
-  };
-
-  state = {
-    responseProfiles: [],
-  };
-
-  render() {
-    return (
-      <HomeComponent 
-        profiles={this.state.responseProfiles}
-        searchUser={this.searchUser}
-      />
+  const searchUser = async (user) => {
+    setTestRender(
+      new Array(10000)
+        .fill()
+        .map((value, id) => ({
+          id: id,
+          name: faker.name.firstName(),
+          company: faker.name.jobTitle(),
+          avatar_url: faker.image.image(80, 80),
+        }))
     );
-  }
+  };
+
+  return (
+    <div>
+      <HomeComponent profiles={testRender} searchUser={searchUser} />
+    </div>
+  );
 }
 
 export default Home;
