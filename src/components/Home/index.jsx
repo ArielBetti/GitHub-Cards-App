@@ -18,7 +18,7 @@ class Home extends React.Component {
         {this.props.profiles.length === 0 ? (
           <HomeEmpty src={EmptyIcon} alt="Empty state" />
         ) : (
-          <CardList profiles={this.props.profiles} />
+          <CardList profiles={this.props.profiles} setPagination={this.props.setPagination} />
         )}
       </HomeContainer>
     );

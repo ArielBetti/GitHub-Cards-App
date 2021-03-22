@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const CardContainer = styled.div`
   border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0,0,0, 0.5);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
   padding: 25px;
   min-width: 20em;
   max-width: 50em;
@@ -37,4 +37,37 @@ export const CardCompany = styled.p`
   font-size: 15px;
   margin-top: 5px;
   font-weight: bold;
+`;
+
+export const StyledPaginateContainer = styled.div`
+  .pagination {
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    font-weight: bold;
+    border: none;
+  }
+
+  li {
+    cursor: pointer;
+    list-style: none;
+    background-color: #4a148c;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    color: white;
+  }
+
+  ul {
+    padding: 0px;
+  }
+
+  .break-me {
+    cursor: default;
+  }
+  .active {
+    background-color: #12005e;
+    color: white;
+  }
 `;

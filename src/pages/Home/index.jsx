@@ -1,29 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeComponent from "@/components/Home";
-import api from "@/services/api";
+import faker from "faker";
 
-class Home extends React.Component {
+function Home() {
+  const [testRender, setTestRender] = useState([]);
 
-  searchUser = async (user) => {
-    const resp = await api.get(user);
-    const { data } = resp;
-    this.setState( prevState => ({
-      responseProfiles: [...prevState.responseProfiles, data]
-    }));
+  const searchUser = async (user) => {
+    setTestRender({
+      data: new Array(10000).fill().map((value, index) => ({
+        id: index,
+        name: faker.name.firstName(),
+        company: faker.name.jobTitle(),
+        avatar_url: faker.image.image(80, 80),
+      })),
+      offset: 0,
+      numberPerPage: 4,
+      pageCount: 0,
+      currentData: []
+    });
   };
 
-  state = {
-    responseProfiles: [],
-  };
+  useEffect(() => {
+    setTestRender((prevState) => ({
+      ...prevState,
+      pageCount: prevState.data ? prevState.data.length / prevState.numberPerPage : null,
+      currentData: prevState.data ? prevState.data.slice(testRender.offset, testRender.offset + testRender.numberPerPage) : null
+    }))
+  }, [testRender.numberPerPage, testRender.offset])
 
-  render() {
-    return (
-      <HomeComponent 
-        profiles={this.state.responseProfiles}
-        searchUser={this.searchUser}
-      />
-    );
-  }
+  return (
+    <div>
+      <HomeComponent profiles={testRender} searchUser={searchUser} setPagination={setTestRender} />
+    </div>
+  );
 }
 
 export default Home;

@@ -1,5 +1,5 @@
 import React from "react";
-import Card from 'components/Card';
+import Card from "components/Card";
 
 class CardList extends React.Component {
   render() {
@@ -7,9 +7,7 @@ class CardList extends React.Component {
 
     return (
       <div>
-        {profiles.map(cards => (
-          <Card profiles={cards}/>
-        ))}
+        <Card profiles={profiles} setPagination={this.props.setPagination} />
       </div>
     );
   }
